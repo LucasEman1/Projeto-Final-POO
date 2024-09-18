@@ -1,19 +1,20 @@
 package gerenciamentoescolar;
 
-import java.util.Date;
+import java.util.Scanner;
 
 public class Usuario {
     private String nome;
-    private int senha;
+    private String senha;
     private int cpf;
     private String telefone;
     private String cidade;
     private String bairro;
     private String rua;
     private int numero;
-    private Date dataDeNascimento;
+    private String dataDeNascimento;
 
-    public Usuario() {
+    public Usuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
+            int numero, String dataDeNascimento) {
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
@@ -27,7 +28,35 @@ public class Usuario {
 
     // métodos
     public void criarUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("--CADASTRO--");
+        System.out.println("Digite seu nome: ");
+        nome = sc.nextLine();
+        System.out.println("Digite sua senha: ");
+        senha = sc.nextLine();
+        System.out.println("Digite seu cpf: ");
+        cpf = sc.nextInt();
 
+        sc.nextLine();
+        System.out.println("Data de Nascimento: ");
+        dataDeNascimento = sc.nextLine();
+
+        System.out.println("Seu telefone: ");
+        telefone = sc.nextLine();
+        System.out.println("Cidade: ");
+        cidade = sc.nextLine();
+        System.out.println("Bairro: ");
+        bairro = sc.nextLine();
+        System.out.println("Rua: ");
+        rua = sc.nextLine();
+        System.out.println("Número: ");
+        numero = sc.nextInt();
+
+        sc.nextLine();
+
+        System.out.println("--cadastro realizado--");
+
+        sc.close();
     }
 
     public void editarUsuario() {
@@ -55,11 +84,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
@@ -111,11 +140,11 @@ public class Usuario {
         this.numero = numero;
     }
 
-    public Date getDataDeNascimento() {
+    public String getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(Date dataDeNascimento) {
+    public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 }
