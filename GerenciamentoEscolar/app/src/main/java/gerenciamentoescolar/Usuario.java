@@ -1,4 +1,5 @@
 package gerenciamentoescolar;
+import java.util.ArrayList;
 
 public class Usuario {
     private String nome;
@@ -79,12 +80,21 @@ public class Usuario {
 
     }
 
-    public void visualizarUsuario() {
-
+    public String visualizarUsuario(){
+        return "Nome:      "+getNome()+"\n"+
+                "CPF:      "+getCpf()+"\n"+
+                "Telefone: "+getTelefone()+"\n"+
+                "Endereço: "+getRua()+" Nº "+getNumero()+" "+getBairro()+" - "+getCidade()+"\n"+
+                "Data de Nascimento: "+getDataDeNascimento();
     }
 
-    public void listarUsuarios() {
-
+    public void listarUsuarios(ArrayList<Usuario> usuarios){
+        int i = 0;
+        for(Usuario n: usuarios){
+            System.out.println("Usuario "+i+":");
+            System.out.println(n.visualizarUsuario());
+            i++;
+        }
     }
 
     // get e set

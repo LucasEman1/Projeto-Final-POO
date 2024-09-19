@@ -7,7 +7,9 @@ public class Aluno extends Usuario {
 
     // aqui é preciso hierarquia da classe usuario para receber o nome e informações
     // do aluno e usar no construtor
-    public Aluno(String nomeDaMae, String nomeDoPai, boolean atendimentoEspecial) {
+    public Aluno(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
+    int numero, String dataDeNascimento, String nomeDaMae, String nomeDoPai, boolean atendimentoEspecial){
+        super(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
         this.nomeDaMae = nomeDaMae;
         this.nomeDoPai = nomeDaMae;
         this.atendimentoEspecial = atendimentoEspecial;

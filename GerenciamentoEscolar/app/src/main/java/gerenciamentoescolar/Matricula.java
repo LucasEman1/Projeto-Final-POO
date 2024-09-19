@@ -25,5 +25,18 @@ public class Matricula {
     public void listatMatricula(){
 
     } 
+
+    public int getAnoLetivo() {
+        return anoLetivo;
+    }
+    public String getNomeDaInstituicao() {
+        return nomeDaInstituicao;
+    }
+    public void setAnoLetivo(int anoLetivo) {
+        this.anoLetivo = anoLetivo;
+    }
+    public void setNomeDaInstituicao(String nomeDaInstituicao) {
+        this.nomeDaInstituicao = nomeDaInstituicao;
+    }
     
 }
