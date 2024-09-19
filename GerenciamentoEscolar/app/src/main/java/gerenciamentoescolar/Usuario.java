@@ -1,7 +1,5 @@
 package gerenciamentoescolar;
 
-import java.util.Scanner;
-
 public class Usuario {
     private String nome;
     private String senha;
@@ -27,40 +25,54 @@ public class Usuario {
     }
 
     // métodos
-    public void criarUsuario() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("--CADASTRO--");
-        System.out.println("Digite seu nome: ");
-        nome = sc.nextLine();
-        System.out.println("Digite sua senha: ");
-        senha = sc.nextLine();
-        System.out.println("Digite seu cpf: ");
-        cpf = sc.nextInt();
+    public Usuario criarUsuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
+    int numero, String dataDeNascimento) {
+        Usuario novo =new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
+        return novo;
+    }//chama o contrudor e retorna um objeto Usuario novo
 
-        sc.nextLine();
-        System.out.println("Data de Nascimento: ");
-        dataDeNascimento = sc.nextLine();
-
-        System.out.println("Seu telefone: ");
-        telefone = sc.nextLine();
-        System.out.println("Cidade: ");
-        cidade = sc.nextLine();
-        System.out.println("Bairro: ");
-        bairro = sc.nextLine();
-        System.out.println("Rua: ");
-        rua = sc.nextLine();
-        System.out.println("Número: ");
-        numero = sc.nextInt();
-
-        sc.nextLine();
-
-        System.out.println("--cadastro realizado--");
-
-        sc.close();
-    }
-
-    public void editarUsuario() {
-
+    public void editarUsuario(String opcaoEd, String novaInfo ){
+        switch (opcaoEd) {
+            case "nome":
+                this.nome = novaInfo;
+                break;
+            case "senha":
+                this.senha = novaInfo;
+                break;
+            case "cpf":
+                try{
+                this.cpf = Integer.parseInt(novaInfo);//converte o valor representado na String em int
+                break;
+                }catch(NumberFormatException n){
+                    System.out.println(novaInfo+" não é um CPF valido!");
+                    System.out.println(n.getMessage());
+                }
+            case "telefone":
+                this.telefone = novaInfo;
+                break;
+            case "cidade":
+                this.cidade = novaInfo;
+                break;
+            case "bairro":
+                this.bairro = novaInfo;
+                break;
+            case "rua":
+                this.rua = novaInfo;
+                break;
+            case "numero":
+                try{
+                this.numero = Integer.parseInt(novaInfo);//converte o valor representado na String em int
+                break;
+                }catch(NumberFormatException n){
+                    System.out.println(novaInfo+" não é um numero valido!");
+                }
+            case "dataDeNascimento":
+                this.dataDeNascimento = novaInfo;
+                break;
+            default:
+                System.out.println(opcaoEd+" não é uma opção valida!");
+                break;
+        }
     }
 
     public void excluirUsuario() {
