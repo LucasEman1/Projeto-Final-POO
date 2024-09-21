@@ -27,8 +27,7 @@ public class Usuario {
     }
 
     // métodos
-    public Usuario criarUsuario(Usuario novo) {
-        Scanner sc = new Scanner(System.in);
+    public Usuario criarUsuario(Scanner sc) {
         System.out.println("Digite informações de usuário: ");
         System.out.print("Nome: ");
         String nome = sc.nextLine();
@@ -36,11 +35,17 @@ public class Usuario {
         System.out.print("Senha: ");
         String senha = sc.nextLine();
         
-        System.out.print("CPF: ");
-        int cpf = sc.nextInt();
+        int cpf;
+        while(true){
+            try{
+                System.out.println("CPF: ");
+                cpf = Integer.parseInt(sc.nextLine());//converte o valor representado na String em int
+                break;
+            }catch(NumberFormatException n){
+                System.out.println("CPF inválido. tente novamente.");
+            }
+        }
         
-        sc.nextLine();
-
         System.out.print("Telefone: ");
         String telefone = sc.nextLine();
 
@@ -53,20 +58,35 @@ public class Usuario {
         System.out.print("rua: ");
         String rua = sc.nextLine();
         
-        System.out.print("numero: ");
-        int numero = sc.nextInt();
+        int numero;
+        while(true){
+            try{
+                System.out.print("numero: ");
+                numero = Integer.parseInt(sc.nextLine());//converte o valor representado na String em int
+                break;
+            }catch(NumberFormatException n){
+                System.out.println("Numero inválido. tente novamente.");
+            }
+        }
         
         sc.nextLine();
 
         System.out.print("Data de Nascimento: ");
         String dataDeNascimento = sc.nextLine();
 
-        novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
-        sc.close();
+        Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
         return novo;
     }//chama o contrudor e retorna um objeto Usuario novo
 
-    public void editarUsuario(String opcaoEd, String novaInfo ){
+    public void editarUsuario(Scanner sc, ArrayList<Usuario> usuarios){
+        System.out.println("Editar informações do usuário:");
+        //qual usuario?
+
+        System.out.println("Qual informação editar?");
+        String opcaoEd = sc.nextLine();
+        System.out.println("Nova informação:");
+        String novaInfo = sc.nextLine();
+
         switch (opcaoEd) {
             case "nome":
                 this.nome = novaInfo;
@@ -75,13 +95,16 @@ public class Usuario {
                 this.senha = novaInfo;
                 break;
             case "cpf":
-                try{
-                this.cpf = Integer.parseInt(novaInfo);//converte o valor representado na String em int
-                break;
-                }catch(NumberFormatException n){
-                    System.out.println(novaInfo+" não é um CPF valido!");
-                    System.out.println(n.getMessage());
+                while(true){
+                    try{
+                        this.cpf = Integer.parseInt(novaInfo);//converte o valor representado na String em int
+                        break;
+                    }catch(NumberFormatException n){
+                        System.out.println(novaInfo+" não é um CPF valido!");
+                        System.out.println(n.getMessage());
+                    }
                 }
+                break;
             case "telefone":
                 this.telefone = novaInfo;
                 break;
@@ -95,12 +118,15 @@ public class Usuario {
                 this.rua = novaInfo;
                 break;
             case "numero":
-                try{
-                this.numero = Integer.parseInt(novaInfo);//converte o valor representado na String em int
-                break;
-                }catch(NumberFormatException n){
-                    System.out.println(novaInfo+" não é um numero valido!");
+                while(true){
+                    try{
+                        this.numero = Integer.parseInt(novaInfo);//converte o valor representado na String em int
+                        break;
+                    }catch(NumberFormatException n){
+                        System.out.println(novaInfo+" não é um numero valido!");
+                    }
                 }
+                break;
             case "dataDeNascimento":
                 this.dataDeNascimento = novaInfo;
                 break;
@@ -110,11 +136,25 @@ public class Usuario {
         }
     }
 
-    public void excluirUsuario() {
+    public ArrayList<Usuario> excluirUsuario(ArrayList<Usuario> usuarios, Scanner sc){
+        System.out.println("Excluir usuário.");
+        Usuario n = acharUsuario(usuarios, sc);
+        if(n != null){
+            usuarios.remove(n);
+            System.out.println("Usuário removido.");
+        }else{
+            System.out.println("usuario não encontrado");
+        }
+        return usuarios;
 
     }
 
-    public String visualizarUsuario(){
+    public void visualizarUsuario(ArrayList<Usuario> usuarios, Scanner sc){
+        Usuario n = acharUsuario(usuarios, sc);
+        n.toString();
+    }
+
+    public String toString(){
         return "Nome:      "+getNome()+"\n"+
                 "CPF:      "+getCpf()+"\n"+
                 "Telefone: "+getTelefone()+"\n"+
@@ -125,10 +165,33 @@ public class Usuario {
     public void listarUsuarios(ArrayList<Usuario> usuarios){
         int i = 0;
         for(Usuario n: usuarios){
-            System.out.println("Usuario "+i+":");
-            System.out.println(n.visualizarUsuario());
+            System.out.println("Usuario "+(i+1)+":");
+            System.out.println(n.toString());
             i++;
         }
+    }
+
+    public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc){
+        System.out.println("informe o nome do usuário: ");
+        String nome = sc.nextLine();
+        int cpf;
+        while(true){
+            try{
+                System.out.println("Informe o CPF do usuário: ");
+                cpf = Integer.parseInt(sc.nextLine());//converte o valor representado na String em int
+                break;
+            }catch(NumberFormatException n){
+                System.out.println("CPF inválido. tente novamente.");
+            }
+        }
+
+        for(Usuario n: usuarios){
+            if(nome.equals(n.getNome()) && cpf == n.getCpf()){
+                return n;
+            }
+        }
+
+        return null;
     }
 
     // get e set
