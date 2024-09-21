@@ -14,7 +14,7 @@ public class Usuario {
     private String dataDeNascimento;
 
     public Usuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
-            int numero, String dataDeNascimento) {
+    int numero, String dataDeNascimento) {
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
@@ -32,50 +32,36 @@ public class Usuario {
         System.out.println("Digite informações de usuário: ");
         System.out.print("Nome: ");
         String nome = sc.nextLine();
-        novo.setNome(nome);
         
-
         System.out.print("Senha: ");
         String senha = sc.nextLine();
-        novo.setSenha(senha);
         
-
         System.out.print("CPF: ");
         int cpf = sc.nextInt();
-        novo.setCpf(cpf);
         
         sc.nextLine();
 
         System.out.print("Telefone: ");
-        String Telefone = sc.nextLine();
-        novo.setTelefone(Telefone);
-        
+        String telefone = sc.nextLine();
 
         System.out.print("cidade: ");
         String cidade = sc.nextLine();
-        novo.setCidade(cidade);
         
-
         System.out.print("bairro: ");
         String bairro = sc.nextLine();
-        novo.setBairro(bairro);
         
-
         System.out.print("rua: ");
         String rua = sc.nextLine();
-        novo.setRua(rua);
         
-
         System.out.print("numero: ");
         int numero = sc.nextInt();
-        novo.setNumero(numero);
         
         sc.nextLine();
 
         System.out.print("Data de Nascimento: ");
         String dataDeNascimento = sc.nextLine();
-        novo.setDataDeNascimento(dataDeNascimento);
 
+        novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
         sc.close();
         return novo;
     }//chama o contrudor e retorna um objeto Usuario novo
