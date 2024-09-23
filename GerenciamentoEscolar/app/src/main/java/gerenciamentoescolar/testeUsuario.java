@@ -13,7 +13,7 @@ public class testeUsuario {
         usuarios.add(novo.criarUsuario(sc));
 
         //edita informações do usuario.
-        novo.editarUsuario(sc, usuarios);
+        novo.editarUsuario(usuarios, sc);
 
         //excluir usuário.
         novo.excluirUsuario(usuarios, sc);

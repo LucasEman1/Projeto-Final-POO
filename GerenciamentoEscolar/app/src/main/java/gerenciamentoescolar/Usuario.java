@@ -62,18 +62,19 @@ public class Usuario {
         return novo;
     }// chama o contrudor e retorna um objeto Usuario novo
 
-    public void editarUsuario(Scanner sc, ArrayList<Usuario> usuarios) {
+    public void editarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("Editar informações do usuário:");
         Usuario novo = acharUsuario(usuarios, sc);
 
         if (novo != null) {
-            while (true) {
+            boolean ficar = true;
+            while (ficar) {
                 try {
                     System.out.println("Qual informação editar?");
                     String opcaoEd = sc.nextLine().toLowerCase();
                     if (opcaoEd.equals("nome") || opcaoEd.equals("senha") || opcaoEd.equals("cpf")
                             || opcaoEd.equals("telefone") || opcaoEd.equals("cidade") || opcaoEd.equals("bairro")
-                            || opcaoEd.equals("numero") || opcaoEd.equals("data )de nascimento")) {
+                            || opcaoEd.equals("numero") || opcaoEd.equals("data de nascimento")) {
 
                         System.out.println("Nova informação:");
                         String novaInfo = pediNovaInfo(sc, opcaoEd);
@@ -107,9 +108,12 @@ public class Usuario {
                                 novo.setDataDeNascimento(novaInfo);
                                 break;
                         }
+                        ficar = false;
+                    } else {
+                        System.out.println("Opção inválida, tente novamente.");
                     }
                 } catch (Exception n) {
-                    System.out.println(n.getMessage() + "\nTente novamente!");
+                    System.out.println("ERRO!" + n.getMessage());
                 }
             }
         }
@@ -130,9 +134,14 @@ public class Usuario {
 
     public void visualizarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         Usuario n = acharUsuario(usuarios, sc);
-        n.toString();
+        if (n != null) {
+            n.toString();
+        } else {
+            System.out.println("Usuário não encontrado.");
+        }
     }
 
+    @Override
     public String toString() {
         return "Nome:      " + getNome() + "\n" +
                 "CPF:      " + getCpf() + "\n" +
