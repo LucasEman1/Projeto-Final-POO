@@ -45,8 +45,7 @@ public class Aluno extends Usuario {
 
     }
 
-    public Aluno criarAluno(Aluno novo) {
-        Scanner sc = new Scanner(System.in);
+    public Aluno criarAluno(Aluno novo, Scanner sc) {
         System.out.println("Digite informações de aluno: ");
         System.out.print("Nome: ");
         String nome = sc.nextLine();
@@ -89,7 +88,6 @@ public class Aluno extends Usuario {
         boolean atendimentoEspecial = sc.nextBoolean();
 
         novo = new Aluno (nome,senha, cpf,telefone,cidade,bairro,rua, numero,dataDeNascimento,nomeDaMae,nomeDoPai, atendimentoEspecial);
-        sc.close();
         return novo;
     }
 
