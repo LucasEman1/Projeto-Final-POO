@@ -1,4 +1,5 @@
 package gerenciamentoescolar;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Usuario {
     private String dataDeNascimento;
 
     public Usuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
-    int numero, String dataDeNascimento) {
+            int numero, String dataDeNascimento) {
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
@@ -30,168 +31,201 @@ public class Usuario {
     public Usuario criarUsuario(Scanner sc) {
         System.out.println("Digite informações de usuário: ");
         System.out.print("Nome: ");
-        String nome = sc.nextLine();
-        
+        String nome = pediNovaInfo(sc, "nome");
+
         System.out.print("Senha: ");
-        String senha = sc.nextLine();
-        
-        int cpf;
-        while(true){
-            try{
-                System.out.println("CPF: ");
-                cpf = Integer.parseInt(sc.nextLine());//converte o valor representado na String em int
-                break;
-            }catch(NumberFormatException n){
-                System.out.println("CPF inválido. tente novamente.");
-            }
-        }
-        
+        String senha = pediNovaInfo(sc, "senha");
+
+        System.out.println("CPF: ");
+        String cpf = pediNovaInfo(sc, "cpf");
+
         System.out.print("Telefone: ");
-        String telefone = sc.nextLine();
+        String telefone = pediNovaInfo(sc, "telefone");
 
         System.out.print("cidade: ");
-        String cidade = sc.nextLine();
-        
+        String cidade = pediNovaInfo(sc, "cidade");
+
         System.out.print("bairro: ");
-        String bairro = sc.nextLine();
-        
+        String bairro = pediNovaInfo(sc, "bairro");
+
         System.out.print("rua: ");
-        String rua = sc.nextLine();
-        
-        int numero;
-        while(true){
-            try{
-                System.out.print("numero: ");
-                numero = Integer.parseInt(sc.nextLine());//converte o valor representado na String em int
-                break;
-            }catch(NumberFormatException n){
-                System.out.println("Numero inválido. tente novamente.");
-            }
-        }
-        
-        sc.nextLine();
+        String rua = pediNovaInfo(sc, "rua");
+
+        System.out.print("numero: ");
+        String numero = pediNovaInfo(sc, "numero");
 
         System.out.print("Data de Nascimento: ");
-        String dataDeNascimento = sc.nextLine();
+        String dataDeNascimento = pediNovaInfo(sc, "dataDeNascimento");
 
-        Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
+        Usuario novo = new Usuario(nome, senha, Integer.parseInt(cpf), telefone, cidade, bairro, rua,
+                Integer.parseInt(numero), dataDeNascimento);
         return novo;
-    }//chama o contrudor e retorna um objeto Usuario novo
+    }// chama o contrudor e retorna um objeto Usuario novo
 
-    public void editarUsuario(Scanner sc, ArrayList<Usuario> usuarios){
+    public void editarUsuario(Scanner sc, ArrayList<Usuario> usuarios) {
         System.out.println("Editar informações do usuário:");
-        //qual usuario?
+        Usuario novo = acharUsuario(usuarios, sc);
 
-        System.out.println("Qual informação editar?");
-        String opcaoEd = sc.nextLine();
-        System.out.println("Nova informação:");
-        String novaInfo = sc.nextLine();
+        if (novo != null) {
+            while (true) {
+                try {
+                    System.out.println("Qual informação editar?");
+                    String opcaoEd = sc.nextLine().toLowerCase();
+                    if (opcaoEd.equals("nome") || opcaoEd.equals("senha") || opcaoEd.equals("cpf")
+                            || opcaoEd.equals("telefone") || opcaoEd.equals("cidade") || opcaoEd.equals("bairro")
+                            || opcaoEd.equals("numero") || opcaoEd.equals("data )de nascimento")) {
 
-        switch (opcaoEd) {
-            case "nome":
-                this.nome = novaInfo;
-                break;
-            case "senha":
-                this.senha = novaInfo;
-                break;
-            case "cpf":
-                while(true){
-                    try{
-                        this.cpf = Integer.parseInt(novaInfo);//converte o valor representado na String em int
-                        break;
-                    }catch(NumberFormatException n){
-                        System.out.println(novaInfo+" não é um CPF valido!");
-                        System.out.println(n.getMessage());
+                        System.out.println("Nova informação:");
+                        String novaInfo = pediNovaInfo(sc, opcaoEd);
+
+                        switch (opcaoEd) {
+                            case "nome":
+                                novo.setNome(novaInfo);
+                                break;
+                            case "senha":
+                                novo.setSenha(novaInfo);
+                                break;
+                            case "cpf":
+                                novo.setCpf(Integer.parseInt(novaInfo));
+                                break;
+                            case "telefone":
+                                novo.setTelefone(novaInfo);
+                                break;
+                            case "cidade":
+                                novo.setCidade(novaInfo);
+                                break;
+                            case "bairro":
+                                novo.setBairro(novaInfo);
+                                break;
+                            case "rua":
+                                novo.setRua(novaInfo);
+                                break;
+                            case "numero":
+                                novo.setNumero(Integer.parseInt(novaInfo));
+                                break;
+                            case "dataDeNascimento":
+                                novo.setDataDeNascimento(novaInfo);
+                                break;
+                        }
                     }
+                } catch (Exception n) {
+                    System.out.println(n.getMessage() + "\nTente novamente!");
                 }
-                break;
-            case "telefone":
-                this.telefone = novaInfo;
-                break;
-            case "cidade":
-                this.cidade = novaInfo;
-                break;
-            case "bairro":
-                this.bairro = novaInfo;
-                break;
-            case "rua":
-                this.rua = novaInfo;
-                break;
-            case "numero":
-                while(true){
-                    try{
-                        this.numero = Integer.parseInt(novaInfo);//converte o valor representado na String em int
-                        break;
-                    }catch(NumberFormatException n){
-                        System.out.println(novaInfo+" não é um numero valido!");
-                    }
-                }
-                break;
-            case "dataDeNascimento":
-                this.dataDeNascimento = novaInfo;
-                break;
-            default:
-                System.out.println(opcaoEd+" não é uma opção valida!");
-                break;
+            }
         }
     }
 
-    public ArrayList<Usuario> excluirUsuario(ArrayList<Usuario> usuarios, Scanner sc){
+    public ArrayList<Usuario> excluirUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("Excluir usuário.");
         Usuario n = acharUsuario(usuarios, sc);
-        if(n != null){
+        if (n != null) {
             usuarios.remove(n);
             System.out.println("Usuário removido.");
-        }else{
+        } else {
             System.out.println("usuario não encontrado");
         }
         return usuarios;
 
     }
 
-    public void visualizarUsuario(ArrayList<Usuario> usuarios, Scanner sc){
+    public void visualizarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         Usuario n = acharUsuario(usuarios, sc);
         n.toString();
     }
 
-    public String toString(){
-        return "Nome:      "+getNome()+"\n"+
-                "CPF:      "+getCpf()+"\n"+
-                "Telefone: "+getTelefone()+"\n"+
-                "Endereço: "+getRua()+" Nº "+getNumero()+" "+getBairro()+" - "+getCidade()+"\n"+
-                "Data de Nascimento: "+getDataDeNascimento();
+    public String toString() {
+        return "Nome:      " + getNome() + "\n" +
+                "CPF:      " + getCpf() + "\n" +
+                "Telefone: " + getTelefone() + "\n" +
+                "Endereço: " + getRua() + " Nº " + getNumero() + " " + getBairro() + " - " + getCidade() + "\n" +
+                "Data de Nascimento: " + getDataDeNascimento();
     }
 
-    public void listarUsuarios(ArrayList<Usuario> usuarios){
+    public void listarUsuarios(ArrayList<Usuario> usuarios) {
         int i = 0;
-        for(Usuario n: usuarios){
-            System.out.println("Usuario "+(i+1)+":");
+        for (Usuario n : usuarios) {
+            System.out.println("Usuario " + (i + 1) + ":");
             System.out.println(n.toString());
             i++;
         }
     }
 
-    public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc){
+    public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("informe o nome do usuário: ");
-        String nome = sc.nextLine();
-        int cpf;
-        while(true){
-            try{
-                System.out.println("Informe o CPF do usuário: ");
-                cpf = Integer.parseInt(sc.nextLine());//converte o valor representado na String em int
-                break;
-            }catch(NumberFormatException n){
-                System.out.println("CPF inválido. tente novamente.");
-            }
-        }
+        String nome = pediNovaInfo(sc, "nome");
+        String cpf = pediNovaInfo(sc, "cpf");
 
-        for(Usuario n: usuarios){
-            if(nome.equals(n.getNome()) && cpf == n.getCpf()){
+        for (Usuario n : usuarios) {
+            if (nome.equals(n.getNome()) && Integer.parseInt(cpf) == n.getCpf()) {
                 return n;
             }
         }
-
+        System.out.println("Usuário não encontrado!");
         return null;
+    }
+
+    private String pediNovaInfo(Scanner sc, String qual) {
+        String novaInfo;
+        while (true) {
+            try {
+                novaInfo = sc.nextLine();
+                if (verificaInfo(qual, novaInfo)) {
+                    break;
+                }
+            } catch (Exception n) {
+                System.out.println("ERRO!" + n.getMessage() + "\nTente novamente:");
+            }
+        }
+        return novaInfo;
+    }
+
+    private boolean verificaInfo(String qual, String novaInfo) {
+        switch (qual) {
+            case "nome":
+                if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
+                    return true;
+                }
+                break;
+            case "senha":
+                if (novaInfo.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
+                    return true;
+                }
+                break;
+            case "cpf":
+                if (novaInfo.matches("\\d{11}")) {
+                    return true;
+                }
+                break;
+            case "telefone":
+                if (novaInfo.matches("\\d{11}")) {
+                    return true;
+                }
+                break;
+            case "cidade":
+
+            case "bairro":
+
+            case "rua":
+                if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
+                    return true;
+                }
+                break;
+            case "numero":
+                if (novaInfo.matches("\\d{1,4}")) {
+                    return true;
+                }
+                break;
+            case "dataDeNascimento":
+                // confere a data no formado dd/mm/aaaa ou dd mm aaaa
+                if (novaInfo.matches("\\d{2}/\\d{2}/\\d{4}") || novaInfo.matches("\\d{2} \\d{2} \\d{4}")) {
+                    return true;
+                }
+                break;
+            default:
+                System.out.println(qual + " não é uma opção valida!");
+                break;
+        }
+        return false;
     }
 
     // get e set
@@ -266,4 +300,5 @@ public class Usuario {
     public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
+
 }
