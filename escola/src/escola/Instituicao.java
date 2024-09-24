@@ -1,4 +1,4 @@
-package gerenciamentoescolar;
+package escola;
 
 public class Instituicao {
     private String nome;

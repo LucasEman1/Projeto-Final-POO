@@ -1,4 +1,4 @@
-package gerenciamentoescolar;
+package escola;
 
 public class Disciplina {
     private String nomeDaDisciplina;
@@ -28,5 +28,14 @@ public class Disciplina {
     public void listatDiciplina(){
 
     } 
+   public String getHorario() {
+       return horario;
+   }
+   public String getNomeDaDisciplina() {
+       return nomeDaDisciplina;
+   }
+   public int getQuantidadeVagas() {
+       return quantidadeVagas;
+   }
    
 }

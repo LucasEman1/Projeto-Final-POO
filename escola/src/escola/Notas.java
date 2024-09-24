@@ -1,4 +1,4 @@
-package gerenciamentoescolar;
+package escola;
 
 import java.util.Scanner;
 
