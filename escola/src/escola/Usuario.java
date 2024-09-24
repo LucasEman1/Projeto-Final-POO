@@ -35,7 +35,7 @@ public class Usuario {
 
         System.out.print("Senha: ");
         String senha = pediNovaInfo(sc, "senha");
-        System.out.println("CPF: ");
+        System.out.print("CPF: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
         System.out.print("Telefone: ");
@@ -172,7 +172,7 @@ public class Usuario {
         return null;
     }
 
-    private String pediNovaInfo(Scanner sc, String qual) {
+    public String pediNovaInfo(Scanner sc, String qual) {
         String novaInfo;
         while (true) {
             try {
