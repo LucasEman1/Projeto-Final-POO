@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class testeUsuario {
     public static void main(String[] args) {
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Usuario novo = new Usuario(null, null, 0, null, null, null, null, 0, null);
+        Usuario novo = new Usuario(null, null, null, null, null, null, null, 0, null);
         Scanner sc = new Scanner(System.in);
  
         //criar usuário.

@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Usuario {
     private String nome;
     private String senha;
-    private int cpf;
+    private String cpf;
     private String telefone;
     private String cidade;
     private String bairro;
@@ -14,7 +14,7 @@ public class Usuario {
     private int numero;
     private String dataDeNascimento;
 
-    public Usuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
+    public Usuario(String nome, String senha, String cpf, String telefone, String cidade, String bairro, String rua,
             int numero, String dataDeNascimento) {
         this.nome = nome;
         this.senha = senha;
@@ -35,7 +35,7 @@ public class Usuario {
 
         System.out.print("Senha: ");
         String senha = pediNovaInfo(sc, "senha");
-        System.out.println("CPF: ");
+        System.out.print("CPF: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
         System.out.print("Telefone: ");
@@ -56,8 +56,9 @@ public class Usuario {
         System.out.print("Data de Nascimento: ");
         String dataDeNascimento = pediNovaInfo(sc, "dataDeNascimento");
 
-        Usuario novo = new Usuario(nome, senha, Integer.parseInt(cpf), telefone, cidade, bairro, rua,
+        Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua,
                 Integer.parseInt(numero), dataDeNascimento);
+        System.out.println("Novo usuário criado.");
         return novo;
     }// chama o contrudor e retorna um objeto Usuario novo
 
@@ -86,7 +87,7 @@ public class Usuario {
                                 novo.setSenha(novaInfo);
                                 break;
                             case "cpf":
-                                novo.setCpf(Integer.parseInt(novaInfo));
+                                novo.setCpf(novaInfo);
                                 break;
                             case "telefone":
                                 novo.setTelefone(novaInfo);
@@ -164,7 +165,7 @@ public class Usuario {
         String cpf = pediNovaInfo(sc, "cpf");
 
         for (Usuario n : usuarios) {
-            if (nome.equals(n.getNome()) && Integer.parseInt(cpf) == n.getCpf()) {
+            if (nome.equals(n.getNome()) && cpf.equals(n.getCpf())) {
                 return n;
             }
         }
@@ -174,16 +175,14 @@ public class Usuario {
 
     private String pediNovaInfo(Scanner sc, String qual) {
         String novaInfo;
-        while (true) {
-            try {
-            	//só recebe string, tem variavel que recebe int
+        while (true){
+                // só recebe string, tem variavel que recebe int
                 novaInfo = sc.nextLine();
                 if (verificaInfo(qual, novaInfo)) {
                     break;
+                }else{
+                    System.out.println(novaInfo+" invalida. tente novamente");
                 }
-            } catch (Exception n) {
-                System.out.println("ERRO!" + n.getMessage() + "\nTente novamente:");
-            }
         }
         return novaInfo;
     }
@@ -193,23 +192,27 @@ public class Usuario {
             case "nome":
                 if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             case "senha":
                 if (novaInfo.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             case "cpf":
                 if (novaInfo.matches("\\d{11}")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             case "telefone":
                 if (novaInfo.matches("\\d{11}")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             case "cidade":
 
             case "bairro":
@@ -217,19 +220,22 @@ public class Usuario {
             case "rua":
                 if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             case "numero":
                 if (novaInfo.matches("\\d{1,4}")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             case "dataDeNascimento":
                 // confere a data no formado dd/mm/aaaa ou dd mm aaaa
                 if (novaInfo.matches("\\d{2}/\\d{2}/\\d{4}") || novaInfo.matches("\\d{2} \\d{2} \\d{4}")) {
                     return true;
+                }else{
+                    return false;
                 }
-                break;
             default:
                 System.out.println(qual + " não é uma opção valida!");
                 break;
@@ -254,11 +260,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
