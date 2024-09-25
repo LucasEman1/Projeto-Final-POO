@@ -55,7 +55,6 @@ public class Aluno extends Usuario {
         
         System.out.print("CPF: ");
         int cpf = sc.nextInt();
-        
         sc.nextLine();
 
         System.out.print("Telefone: ");
@@ -90,21 +89,16 @@ public class Aluno extends Usuario {
         novo = new Aluno (nome,senha, cpf,telefone,cidade,bairro,rua, numero,dataDeNascimento,nomeDaMae,nomeDoPai, atendimentoEspecial);
         return novo;
     }
-
     public void editaAluno() {
 
     }
-
     public void excluirAluno() {
 
     }
-
     public void visualizarAluno() {
 
     }
-
     public void listarAlunos() {
 
     }
-
 }
