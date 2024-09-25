@@ -64,9 +64,10 @@ public class Usuario {
     public void editarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("Editar informações do usuário:");
         Usuario novo = acharUsuario(usuarios, sc);
+        boolean ficar = true;
 
         if (novo != null) {
-            boolean ficar = true;
+            ficar = true;
             while (ficar) {
                 try {
                     System.out.println("Qual informação editar?");
@@ -161,6 +162,7 @@ public class Usuario {
     public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("informe o nome do usuário: ");
         String nome = pediNovaInfo(sc, "nome");
+        System.out.println("informe o CPF do usuário: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
         for (Usuario n : usuarios) {
@@ -176,7 +178,7 @@ public class Usuario {
         String novaInfo;
         while (true) {
             try {
-            	//só recebe string, tem variavel que recebe int
+                // só recebe string, tem variavel que recebe int
                 novaInfo = sc.nextLine();
                 if (verificaInfo(qual, novaInfo)) {
                     break;

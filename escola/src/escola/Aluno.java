@@ -1,12 +1,13 @@
 package escola;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aluno extends Usuario {
     private String nomeDaMae;
     private String nomeDoPai;
     private boolean atendimentoEspecial;
-    
+
     // aqui é preciso hierarquia da classe usuario para receber o nome e informações
     // do aluno e usar no construtor
     public Aluno(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
@@ -43,10 +44,6 @@ public class Aluno extends Usuario {
     }
 
     // métodos
-    public boolean verificarAluno() {
-
-    }
-
     public Aluno criarAluno(Scanner sc, Aluno novo) {
         System.out.println("Digite informações de aluno: ");
         System.out.print("Nome: ");
@@ -108,20 +105,65 @@ public class Aluno extends Usuario {
         return novo;
     }
 
-    public void editaAluno() {
+    public void editaAluno(ArrayList<Usuario> alunos, Scanner sc) {
+        System.out.println("Editar informações do alunos:");
+        Aluno novo = acharUsuario(alunos, sc);
+        boolean ficar = true;
+        String novaInfo;
 
+        if (novo != null) {
+            ficar = true;
+            while (ficar) {
+                try {
+                    System.out.println("Qual informação editar?");
+                    String opcaoEd = sc.nextLine().toLowerCase();
+                    if (opcaoEd.equals("nome do pai") || opcaoEd.equals("nome do mãe")) {
+
+                        System.out.println("Nova informação:");
+                        novaInfo = pediNovaInfo(sc, "nome");
+
+                        switch (opcaoEd) {
+                            case "nome do pai":
+                                novo.setNomeDaPai(novaInfo);
+                                break;
+                            case "nome do mãe":
+                                novo.setNomeDaMae(novaInfo);
+                                break;
+                        }
+                        ficar = false;
+                    } else if (opcaoEd.equals("atentimento especial")) {
+                        System.out.println("Atendimento Especial?");
+                        opcaoEd = sc.nextLine().toLowerCase();
+                        if (opcaoEd.equals("sim")) {
+                            novo.setAtendimentoEspecial(true);
+                        } else if (opcaoEd.equals("nao") || opcaoEd.equals("não")) {
+                            novo.setAtendimentoEspecial(false);
+                        }
+                    } else if (pcaoEd.equals("nome") || opcaoEd.equals("senha") || opcaoEd.equals("cpf")
+                            || opcaoEd.equals("telefone") || opcaoEd.equals("cidade") || opcaoEd.equals("bairro")
+                            || opcaoEd.equals("numero") || opcaoEd.equals("data de nascimento")) {
+                        novo.editarUsuario(alunos, sc);
+                    } else {
+                        System.out.println("Opção inválida, tente novamente.");
+                    }
+                } catch (Exception n) {
+                    System.out.println("ERRO!" + n.getMessage());
+                }
+            }
+        }
     }
 
-    public void excluirAluno() {
-
+    public void excluirAluno(ArrayList<Usuario> alunos, Scanner sc) {
+        acharUsuario(alunos, sc);
+        excluirUsuario(alunos, sc);
     }
 
-    public void visualizarAluno() {
-
+    public void visualizarAluno(ArrayList<Usuario> alunos, Scanner sc) {
+        visualizarUsuario(alunos, sc);
     }
 
-    public void listarAlunos() {
-
+    public void listarAlunos(ArrayList<Usuario> alunos, Scanner sc) {
+        listarUsuarios(alunos);
     }
 
 }
