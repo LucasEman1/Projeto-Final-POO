@@ -8,9 +8,9 @@ public class testeUsuario {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         Usuario novo = new Usuario(null, null, null, null, null, null, null, 0, null);
         Scanner sc = new Scanner(System.in);
-        String i = sc.nextLine();
+        String i;
         while (true) {
-            System.out.println("escolha um metodo");
+            i = sc.nextLine();
             switch (i) {
                 case "1":
                     // criar usuário.
@@ -26,9 +26,8 @@ public class testeUsuario {
                     break;
                 case "4":
                     // visualizar usuário
-                    if(novo.visualizarUsuario(usuarios, sc)){
-                        break;
-                    }
+                    novo.visualizarUsuario(usuarios, sc);
+                    break;
                 case "5":
                     // listar usuários
                     novo.listarUsuarios(usuarios);

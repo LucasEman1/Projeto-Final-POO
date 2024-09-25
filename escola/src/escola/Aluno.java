@@ -44,8 +44,8 @@ public class Aluno extends Usuario {
     public boolean verificarAluno() {
 
     }
-
-    public Aluno criarAluno(Scanner sc, Aluno novo) {
+    
+    public Aluno criarAluno(Aluno novo, Scanner sc) {
         System.out.println("Digite informações de aluno: ");
         System.out.print("Nome: ");
         String nome = sc.nextLine();

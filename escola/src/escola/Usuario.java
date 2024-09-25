@@ -162,7 +162,7 @@ public class Usuario {
     public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("informe o nome do usuário: ");
         String nome = pediNovaInfo(sc, "nome");
-        System.out.println("informe o CPF do usuário: ");
+        System.out.println("informe o cpf: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
         for (Usuario n : usuarios) {
@@ -172,7 +172,7 @@ public class Usuario {
         }
         System.out.println("Usuário não encontrado!");
         return null;
-    }
+    } 
 
     private String pediNovaInfo(Scanner sc, String qual) {
         String novaInfo;
