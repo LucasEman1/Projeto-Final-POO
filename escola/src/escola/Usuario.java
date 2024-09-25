@@ -198,7 +198,6 @@ public class Usuario {
                 }else{
                     return false;
                 }
-                break;
             case "senha":
                 if (novaInfo.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
                     return true;
