@@ -162,6 +162,7 @@ public class Usuario {
     public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("informe o nome do usuário: ");
         String nome = pediNovaInfo(sc, "nome");
+        System.out.println("informe o CPF do usuário: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
         for (Usuario n : usuarios) {

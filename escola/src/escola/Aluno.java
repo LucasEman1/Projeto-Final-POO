@@ -44,7 +44,7 @@ public class Aluno extends Usuario {
     public void verificarAluno() {
 
     }
-
+    
     public Aluno criarAluno(Aluno novo, Scanner sc) {
         System.out.println("Digite informações de aluno: ");
         System.out.print("Nome: ");
