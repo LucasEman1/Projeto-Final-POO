@@ -176,14 +176,16 @@ public class Usuario {
 
     private String pediNovaInfo(Scanner sc, String qual) {
         String novaInfo;
-        while (true){
-                // só recebe string, tem variavel que recebe int
+        while (true) {
+            try {
+            	//só recebe string, tem variavel que recebe int
                 novaInfo = sc.nextLine();
                 if (verificaInfo(qual, novaInfo)) {
                     break;
-                }else{
-                    System.out.println(novaInfo+" invalida. tente novamente");
                 }
+            } catch (Exception n) {
+                System.out.println("ERRO!" + n.getMessage() + "\nTente novamente:");
+            }
         }
         return novaInfo;
     }
@@ -196,6 +198,7 @@ public class Usuario {
                 }else{
                     return false;
                 }
+                break;
             case "senha":
                 if (novaInfo.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
                     return true;

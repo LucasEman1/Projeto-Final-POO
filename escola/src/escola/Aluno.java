@@ -41,11 +41,11 @@ public class Aluno extends Usuario {
     }
 
     // métodos
-    public void verificarAluno() {
+    public boolean verificarAluno() {
 
     }
-    
-    public Aluno criarAluno(Aluno novo, Scanner sc) {
+
+    public Aluno criarAluno(Scanner sc, Aluno novo) {
         System.out.println("Digite informações de aluno: ");
         System.out.print("Nome: ");
         String nome = sc.nextLine();
