@@ -9,7 +9,7 @@ public class Notas {
     private float media;
     private String situacao;
 
-    public Notas(float nota1, float nota2, float nota3, float media, String situacao){
+    public Notas(float nota1, float nota2, float nota3, float media, String situacao) {
         this.nota1 = nota1;
         this.nota2 = nota2;
         this.nota3 = nota3;
@@ -17,28 +17,66 @@ public class Notas {
         this.situacao = situacao;
     }
 
-    public void criarNotas(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite a nota 1: ");
-        nota1 = scanner.nextInt();
-        System.out.println("Digite a nota 2: ");
-        nota2 = scanner.nextInt();
-        System.out.println("Digite a nota 3: ");
-        nota3 = scanner.nextInt();
+    public void criarNotas(Scanner sc) {
+        try {
+            System.out.println("Digite a nota 1: ");
+            nota1 = sc.nextFloat();
+            System.out.println("Digite a nota 2: ");
+            nota2 = sc.nextFloat();
+            System.out.println("Digite a nota 3: ");
+            nota3 = sc.nextFloat();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-        scanner.close();
+        media = (nota1 + nota2 + nota3) / 3;
+
+        if (media >= 7.0) {
+            situacao = "Aprovado";
+        } else {
+            situacao = "Em recuperação";
+        }
+
+        System.out.println(toString());
     }
-    public void editarNotas(){
+
+    public void editarNotas(Scanner sc) {
+        System.out.println("Digite a nota que deseja editar: ");
+        int decide = sc.nextInt();
+        switch (decide) {
+            case 1:
+                System.out.println("Nova nota primeira unidade: ");
+                nota1 = sc.nextFloat();
+                break;
+            case 2:
+                System.out.println("Nova nota segunda unidade: ");
+                nota2 = sc.nextFloat();
+                break;
+            case 3:
+                System.out.println("Nova nota terceira unidade: ");
+                nota3 = sc.nextFloat();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void excluirNotas() {
 
     }
-    public void excluirNotas(){
+
+    public void visualizarNotas() {
 
     }
-    public void visualizarNotas(){
+
+    public void listarNotas() {
 
     }
-    public void listarNotas(){
 
+    @Override
+    public String toString() {
+        return "Notas [nota1=" + nota1 + ", nota2=" + nota2 + ", nota3=" + nota3 + ", media=" + media + ", situacao="
+                + situacao + "]";
     }
 
     public float getNota1() {
@@ -80,6 +118,4 @@ public class Notas {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-
-
 }
