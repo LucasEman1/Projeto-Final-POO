@@ -6,13 +6,14 @@ import java.util.Scanner;
 public class Usuario {
     private String nome;
     private String senha;
-    private int cpf;
+    private String cpf;
     private String telefone;
     private String cidade;
     private String bairro;
     private String rua;
     private int numero;
     private String dataDeNascimento;
+    public static ArrayList<Usuario> usuarios = new ArrayList<>();
 
     public Usuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
             int numero, String dataDeNascimento) {
@@ -56,12 +57,12 @@ public class Usuario {
         System.out.print("Data de Nascimento: ");
         String dataDeNascimento = pediNovaInfo(sc, "dataDeNascimento");
 
-        Usuario novo = new Usuario(nome, senha, Integer.parseInt(cpf), telefone, cidade, bairro, rua,
+        Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua,
                 Integer.parseInt(numero), dataDeNascimento);
         return novo;
     }// chama o contrudor e retorna um objeto Usuario novo
 
-    public void editarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
+    public void editarUsuario(Scanner sc) {
         System.out.println("Editar informações do usuário:");
         Usuario novo = acharUsuario(usuarios, sc);
 
@@ -118,7 +119,7 @@ public class Usuario {
         }
     }
 
-    public ArrayList<Usuario> excluirUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
+    public ArrayList<Usuario> excluirUsuario(Scanner sc) {
         System.out.println("Excluir usuário.");
         Usuario n = acharUsuario(usuarios, sc);
         if (n != null) {
@@ -131,7 +132,7 @@ public class Usuario {
 
     }
 
-    public void visualizarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
+    public void visualizarUsuario(Scanner sc) {
         Usuario n = acharUsuario(usuarios, sc);
         if (n != null) {
             n.toString();
@@ -158,7 +159,7 @@ public class Usuario {
         }
     }
 
-    public Usuario acharUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
+    public Usuario acharUsuario(Scanner sc) {
         System.out.println("informe o nome do usuário: ");
         String nome = pediNovaInfo(sc, "nome");
         String cpf = pediNovaInfo(sc, "cpf");
@@ -229,7 +230,7 @@ public class Usuario {
                 if (novaInfo.matches("\\d{2}/\\d{2}/\\d{4}") || novaInfo.matches("\\d{2} \\d{2} \\d{4}")) {
                     return true;
                 }
-                break;
+                break; 
             default:
                 System.out.println(qual + " não é uma opção valida!");
                 break;
