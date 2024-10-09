@@ -27,39 +27,87 @@ public class Usuario {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    // métodos
     public Usuario criarUsuario(Scanner sc) {
         System.out.println("Digite informações de usuário: ");
-        System.out.print("Nome: ");
         String nome = pediNovaInfo(sc, "nome");
-
-        System.out.print("Senha: ");
         String senha = pediNovaInfo(sc, "senha");
-        System.out.println("CPF: ");
         String cpf = pediNovaInfo(sc, "cpf");
-
-        System.out.print("Telefone: ");
         String telefone = pediNovaInfo(sc, "telefone");
-
-        System.out.print("cidade: ");
         String cidade = pediNovaInfo(sc, "cidade");
-
-        System.out.print("bairro: ");
         String bairro = pediNovaInfo(sc, "bairro");
-
-        System.out.print("rua: ");
         String rua = pediNovaInfo(sc, "rua");
-
-        System.out.print("numero: ");
         String numero = pediNovaInfo(sc, "numero");
-
-        System.out.print("Data de Nascimento: ");
         String dataDeNascimento = pediNovaInfo(sc, "dataDeNascimento");
 
         Usuario novo = new Usuario(nome, senha, Integer.parseInt(cpf), telefone, cidade, bairro, rua,
                 Integer.parseInt(numero), dataDeNascimento);
         return novo;
-    }// chama o contrudor e retorna um objeto Usuario novo
+    }
+
+    private String pediNovaInfo(Scanner sc, String qual) {
+        String novaInfo;
+        while (true) {
+            try {
+                System.out.print(qual + ": ");
+                novaInfo = sc.nextLine();
+                if (verificaInfo(qual, novaInfo)) {
+                    break;
+                }
+            } catch (Exception n) {
+                System.out.println("ERRO!" + n.getMessage() + "\nTente novamente:");
+            }
+        }
+        return novaInfo;
+    }
+
+    private boolean verificaInfo(String qual, String novaInfo) {
+        switch (qual) {
+            case "nome":
+                if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
+                    return true;
+                }
+                break;
+            case "senha":
+                if (novaInfo.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
+                    return true;
+                }
+                break;
+            case "cpf":
+                if (novaInfo.matches("\\d{11}")) {
+                    return true;
+                }
+                break;
+            case "telefone":
+                if (novaInfo.matches("\\d{11}")) {
+                    return true;
+                }
+                break;
+            case "cidade":
+
+            case "bairro":
+
+            case "rua":
+                if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
+                    return true;
+                }
+                break;
+            case "numero":
+                if (novaInfo.matches("\\d{1,4}")) {
+                    return true;
+                }
+                break;
+            case "dataDeNascimento":
+                // confere a data no formado dd/mm/aaaa ou dd mm aaaa
+                if (novaInfo.matches("\\d{2}/\\d{2}/\\d{4}") || novaInfo.matches("\\d{2} \\d{2} \\d{4}")) {
+                    return true;
+                }
+                break;
+            default:
+                System.out.println(qual + " não é uma opção valida!");
+                break;
+        }
+        return false;
+    }
 
     public void editarUsuario(ArrayList<Usuario> usuarios, Scanner sc) {
         System.out.println("Editar informações do usuário:");
@@ -162,7 +210,6 @@ public class Usuario {
         System.out.println("informe o nome do usuário: ");
         String nome = pediNovaInfo(sc, "nome");
         String cpf = pediNovaInfo(sc, "cpf");
-
         for (Usuario n : usuarios) {
             if (nome.equals(n.getNome()) && Integer.parseInt(cpf) == n.getCpf()) {
                 return n;
@@ -172,72 +219,6 @@ public class Usuario {
         return null;
     }
 
-    private String pediNovaInfo(Scanner sc, String qual) {
-        String novaInfo;
-        while (true) {
-            try {
-            	//só recebe string, tem variavel que recebe int
-                novaInfo = sc.nextLine();
-                if (verificaInfo(qual, novaInfo)) {
-                    break;
-                }
-            } catch (Exception n) {
-                System.out.println("ERRO!" + n.getMessage() + "\nTente novamente:");
-            }
-        }
-        return novaInfo;
-    }
-
-    private boolean verificaInfo(String qual, String novaInfo) {
-        switch (qual) {
-            case "nome":
-                if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
-                    return true;
-                }
-                break;
-            case "senha":
-                if (novaInfo.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$")) {
-                    return true;
-                }
-                break;
-            case "cpf":
-                if (novaInfo.matches("\\d{11}")) {
-                    return true;
-                }
-                break;
-            case "telefone":
-                if (novaInfo.matches("\\d{11}")) {
-                    return true;
-                }
-                break;
-            case "cidade":
-
-            case "bairro":
-
-            case "rua":
-                if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
-                    return true;
-                }
-                break;
-            case "numero":
-                if (novaInfo.matches("\\d{1,4}")) {
-                    return true;
-                }
-                break;
-            case "dataDeNascimento":
-                // confere a data no formado dd/mm/aaaa ou dd mm aaaa
-                if (novaInfo.matches("\\d{2}/\\d{2}/\\d{4}") || novaInfo.matches("\\d{2} \\d{2} \\d{4}")) {
-                    return true;
-                }
-                break;
-            default:
-                System.out.println(qual + " não é uma opção valida!");
-                break;
-        }
-        return false;
-    }
-
-    // get e set
     public String getNome() {
         return nome;
     }
@@ -309,5 +290,4 @@ public class Usuario {
     public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
-
 }

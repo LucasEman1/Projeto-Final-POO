@@ -1,6 +1,9 @@
-package escola;
+package escola.testes;
 
 import java.util.Scanner;
+
+import escola.Usuario;
+
 import java.util.ArrayList;
 
 public class testeUsuario {
