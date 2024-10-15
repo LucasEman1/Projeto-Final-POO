@@ -1,4 +1,5 @@
 package escola;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aluno extends Usuario {
@@ -45,7 +46,7 @@ public class Aluno extends Usuario {
 
     }
 
-    public Aluno criarAluno(Aluno novo, Scanner sc) {
+    public Aluno criarAluno(Scanner sc) {
         System.out.println("Digite informações de aluno: ");
         System.out.print("Nome: ");
         String nome = sc.nextLine();
@@ -86,7 +87,7 @@ public class Aluno extends Usuario {
         System.out.print("atendimento especial? ");
         boolean atendimentoEspecial = sc.nextBoolean();
 
-        novo = new Aluno (nome,senha, cpf,telefone,cidade,bairro,rua, numero,dataDeNascimento,nomeDaMae,nomeDoPai, atendimentoEspecial);
+        novo.usuario = new Aluno (nome,senha, cpf,telefone,cidade,bairro,rua, numero,dataDeNascimento,nomeDaMae,nomeDoPai, atendimentoEspecial);
         return novo;
     }
     public void editaAluno() {
