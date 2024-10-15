@@ -1,5 +1,4 @@
-package escola;
-
+//package escola;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,12 +10,12 @@ public class Usuario {
     private String cidade;
     private String bairro;
     private String rua;
-    private int numero;
+    private String numero;
     private String dataDeNascimento;
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
 
-    public Usuario(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
-            int numero, String dataDeNascimento) {
+    public Usuario(String nome, String senha, String cpf, String telefone, String cidade, String bairro, String rua,
+            String numero, String dataDeNascimento) {
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
@@ -34,8 +33,7 @@ public class Usuario {
         System.out.print("Nome: ");
         String nome = pediNovaInfo(sc, "nome");
 
-        System.out.print("Senha: ");
-        String senha = pediNovaInfo(sc, "senha");
+        System.out.print("Senha: ");        String senha = pediNovaInfo(sc, "senha");
         System.out.println("CPF: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
@@ -57,14 +55,13 @@ public class Usuario {
         System.out.print("Data de Nascimento: ");
         String dataDeNascimento = pediNovaInfo(sc, "dataDeNascimento");
 
-        Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua,
-                Integer.parseInt(numero), dataDeNascimento);
+        Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
         return novo;
     }// chama o contrudor e retorna um objeto Usuario novo
 
     public void editarUsuario(Scanner sc) {
         System.out.println("Editar informações do usuário:");
-        Usuario novo = acharUsuario(usuarios, sc);
+        Usuario novo = acharUsuario(sc);
 
         if (novo != null) {
             boolean ficar = true;
@@ -87,7 +84,7 @@ public class Usuario {
                                 novo.setSenha(novaInfo);
                                 break;
                             case "cpf":
-                                novo.setCpf(Integer.parseInt(novaInfo));
+                                novo.setCpf(novaInfo);
                                 break;
                             case "telefone":
                                 novo.setTelefone(novaInfo);
@@ -102,7 +99,7 @@ public class Usuario {
                                 novo.setRua(novaInfo);
                                 break;
                             case "numero":
-                                novo.setNumero(Integer.parseInt(novaInfo));
+                                novo.setNumero(novaInfo);
                                 break;
                             case "dataDeNascimento":
                                 novo.setDataDeNascimento(novaInfo);
@@ -121,7 +118,7 @@ public class Usuario {
 
     public ArrayList<Usuario> excluirUsuario(Scanner sc) {
         System.out.println("Excluir usuário.");
-        Usuario n = acharUsuario(usuarios, sc);
+        Usuario n = acharUsuario(sc);
         if (n != null) {
             usuarios.remove(n);
             System.out.println("Usuário removido.");
@@ -133,7 +130,7 @@ public class Usuario {
     }
 
     public void visualizarUsuario(Scanner sc) {
-        Usuario n = acharUsuario(usuarios, sc);
+        Usuario n = acharUsuario(sc);
         if (n != null) {
             n.toString();
         } else {
@@ -165,7 +162,7 @@ public class Usuario {
         String cpf = pediNovaInfo(sc, "cpf");
 
         for (Usuario n : usuarios) {
-            if (nome.equals(n.getNome()) && Integer.parseInt(cpf) == n.getCpf()) {
+            if (nome.equals(n.getNome()) && cpf == n.getCpf()) {
                 return n;
             }
         }
@@ -173,7 +170,7 @@ public class Usuario {
         return null;
     }
 
-    private String pediNovaInfo(Scanner sc, String qual) {
+    public static String pediNovaInfo(Scanner sc, String qual) {
         String novaInfo;
         while (true) {
             try {
@@ -189,7 +186,7 @@ public class Usuario {
         return novaInfo;
     }
 
-    private boolean verificaInfo(String qual, String novaInfo) {
+    private static boolean verificaInfo(String qual, String novaInfo) {
         switch (qual) {
             case "nome":
                 if (novaInfo.matches("^[A-Za-zÁ-Üá-ü]+( [A-Za-zÁ-Üá-ü]+)*$")) {
@@ -255,11 +252,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -295,11 +292,11 @@ public class Usuario {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
