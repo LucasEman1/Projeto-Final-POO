@@ -1,4 +1,5 @@
-// package escola;
+package escola;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,7 +1,9 @@
-package escola;
+package escola.testes;
 
-import ja.io.*;
+import java.io.*;
 import java.util.ArrayList;
+
+import escola.Usuario;
 
 public class testeUsuario {
     public static void main(String[] args) {
