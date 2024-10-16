@@ -20,7 +20,7 @@ public class Main {
 
         System.out.println("-----------------------Menu-----------------------" + "\n" +
                 "Digite o valor corespondente a uma das opções." + "\n" +
-                "1 - ");
+                "1 - Matricula" + "\n" + "2 - Notas" + "\n" + "3 - Agendamento de Reunião" + "\n" + "4 - Disciplina");
 
         sc.close();
     }

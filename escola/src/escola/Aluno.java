@@ -1,6 +1,5 @@
 package escola;
 
-import escola.Usuario;
 import java.util.ArrayList;
 import java.util.Scanner;
 
