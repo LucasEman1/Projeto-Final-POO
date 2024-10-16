@@ -86,7 +86,7 @@ public class Instituicao {
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
@@ -99,7 +99,7 @@ public class Instituicao {
                 case 2:
                     System.out.print("Índice da Instituição a ser editada: ");
                     int indiceEditar = scanner.nextInt();
-                    scanner.nextLine(); 
+                    scanner.nextLine();
                     System.out.print("Novo nome da Instituição: ");
                     String novoNome = scanner.nextLine();
                     System.out.print("Novo endereço da Instituição: ");

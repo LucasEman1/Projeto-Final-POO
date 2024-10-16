@@ -28,13 +28,13 @@ public class Usuario {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    // métodos
     public Usuario criarUsuario(Scanner sc) {
         System.out.println("Digite informações de usuário: ");
         System.out.print("Nome: ");
         String nome = pediNovaInfo(sc, "nome");
 
-        System.out.print("Senha: ");        String senha = pediNovaInfo(sc, "senha");
+        System.out.print("Senha: ");
+        String senha = pediNovaInfo(sc, "senha");
         System.out.println("CPF: ");
         String cpf = pediNovaInfo(sc, "cpf");
 
@@ -58,7 +58,7 @@ public class Usuario {
 
         Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
         return novo;
-    }// chama o contrudor e retorna um objeto Usuario novo
+    }
 
     public void editarUsuario(Scanner sc) {
         System.out.println("Editar informações do usuário:");
@@ -175,10 +175,12 @@ public class Usuario {
         String novaInfo;
         while (true) {
             try {
-            	//só recebe string, tem variavel que recebe int
+                // só recebe string, tem variavel que recebe int
                 novaInfo = sc.nextLine();
                 if (verificaInfo(qual, novaInfo)) {
                     break;
+                } else {
+                    System.out.println(qual + " invalido(a). Tente novamente");
                 }
             } catch (Exception n) {
                 System.out.println("ERRO!" + n.getMessage() + "\nTente novamente:");
@@ -228,7 +230,7 @@ public class Usuario {
                 if (novaInfo.matches("\\d{2}/\\d{2}/\\d{4}") || novaInfo.matches("\\d{2} \\d{2} \\d{4}")) {
                     return true;
                 }
-                break; 
+                break;
             default:
                 System.out.println(qual + " não é uma opção valida!");
                 break;
@@ -236,7 +238,6 @@ public class Usuario {
         return false;
     }
 
-    // get e set
     public String getNome() {
         return nome;
     }
@@ -308,5 +309,4 @@ public class Usuario {
     public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
-
 }

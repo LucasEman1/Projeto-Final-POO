@@ -129,7 +129,8 @@ public class Notas {
                 try {
                     setNota3(0);
                     System.out.println("Nota excluida!");
-                    calcularMedia();;
+                    calcularMedia();
+                    ;
                 } catch (Exception e) {
                     System.out.println("Erro" + e.getMessage());
                 }

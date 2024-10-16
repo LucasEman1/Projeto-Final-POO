@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class testeNotas {
     public static void main(String[] args) {
-        //String caminhoArquivo = "src\\escola\\arquivos\\notas.txt";
+        // String caminhoArquivo = "src\\escola\\arquivos\\notas.txt";
         Notas notas = new Notas(0, 0, 0);
         Scanner sc = new Scanner(System.in);
         int caso;
@@ -18,12 +18,12 @@ public class testeNotas {
             System.out.println("Visualizar Notas: 4 ");
             System.out.print("opcao: ");
             caso = sc.nextInt();
-            //Notas notasCarregadas = new Notas(0, 0, 0);
-            //notasCarregadas.carregarNotas(caminhoArquivo); 
+            // Notas notasCarregadas = new Notas(0, 0, 0);
+            // notasCarregadas.carregarNotas(caminhoArquivo);
             switch (caso) {
                 case 1:
                     notas.criarNotas(sc);
-                    //notas.salvarNotas(caminhoArquivo);
+                    // notas.salvarNotas(caminhoArquivo);
                     break;
                 case 2:
                     notas.editarNotas(sc);
@@ -33,7 +33,7 @@ public class testeNotas {
                     break;
                 case 4:
                     notas.visualizarNotas();
-                    //notasCarregadas.visualizarNotas();
+                    // notasCarregadas.visualizarNotas();
                     break;
                 default:
                     break;
