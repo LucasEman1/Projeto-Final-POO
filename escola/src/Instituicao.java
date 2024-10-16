@@ -1,5 +1,5 @@
-C:\Users\Usuário\Documents\Projeto-Final-POO\escola\src\escola\Projeto-Final-POO\escola\src\escola\Instituicao.javaimport java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Instituicao {
