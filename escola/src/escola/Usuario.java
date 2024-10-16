@@ -57,6 +57,7 @@ public class Usuario {
         String dataDeNascimento = pediNovaInfo(sc, "dataDeNascimento");
 
         Usuario novo = new Usuario(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
+        usuarios.add(novo);
         return novo;
     }
 

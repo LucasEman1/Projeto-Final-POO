@@ -8,8 +8,8 @@ public class Aluno extends Usuario {
     private String nomeDoPai;
     private boolean atendimentoEspecial;
 
-    public Aluno(String nome, String senha, int cpf, String telefone, String cidade, String bairro, String rua,
-            int numero, String dataDeNascimento, String nomeDaMae, String nomeDoPai, boolean atendimentoEspecial) {
+    public Aluno(String nome, String senha, String cpf, String telefone, String cidade, String bairro, String rua,
+            String numero, String dataDeNascimento, String nomeDaMae, String nomeDoPai, boolean atendimentoEspecial) {
         super(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento);
         this.nomeDaMae = nomeDaMae;
         this.nomeDoPai = nomeDaMae;
@@ -29,8 +29,7 @@ public class Aluno extends Usuario {
         String senha = sc.nextLine();
 
         System.out.print("CPF: ");
-        int cpf = sc.nextInt();
-        sc.nextLine();
+        String cpf = sc.nextLine();
 
         System.out.print("Telefone: ");
         String telefone = sc.nextLine();
@@ -45,7 +44,7 @@ public class Aluno extends Usuario {
         String rua = sc.nextLine();
 
         System.out.print("numero: ");
-        int numero = sc.nextInt();
+        String numero = sc.nextLine();
 
         sc.nextLine();
 
@@ -59,10 +58,10 @@ public class Aluno extends Usuario {
         String nomeDoPai = sc.nextLine();
 
         System.out.print("atendimento especial? ");
-        boolean atendimentoEspecial = sc.nextBoolean();
+        boolean atendimentoEspecial = true;
 
-        novo.usuario = new Aluno(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento, nomeDaMae,
-                nomeDoPai, atendimentoEspecial);
+        Aluno novo = new Aluno(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento, nomeDaMae, 
+                    nomeDoPai, atendimentoEspecial);
         return novo;
     }
 
