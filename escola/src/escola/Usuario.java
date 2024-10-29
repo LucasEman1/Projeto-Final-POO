@@ -128,7 +128,6 @@ public class Usuario {
             System.out.println("usuario não encontrado");
         }
         return usuarios;
-
     }
 
     public void visualizarUsuario(Scanner sc) {
@@ -176,7 +175,6 @@ public class Usuario {
         String novaInfo;
         while (true) {
             try {
-                // só recebe string, tem variavel que recebe int
                 novaInfo = sc.nextLine();
                 if (verificaInfo(qual, novaInfo)) {
                     break;

@@ -1,6 +1,5 @@
 package escola;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aluno extends Usuario {
@@ -60,25 +59,74 @@ public class Aluno extends Usuario {
         System.out.print("atendimento especial? ");
         boolean atendimentoEspecial = true;
 
-        Aluno novo = new Aluno(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento, nomeDaMae, 
-                    nomeDoPai, atendimentoEspecial);
+        Aluno novo = new Aluno(nome, senha, cpf, telefone, cidade, bairro, rua, numero, dataDeNascimento, nomeDaMae,
+                nomeDoPai, atendimentoEspecial);
         return novo;
     }
 
-    public void editaAluno() {
+    public void editaAluno(Scanner sc) {
+        String opcao = "0";
 
+        while (opcao != "0") {
+            System.out.println(toString());
+            System.out.println("qual opcao editar: ");
+            System.out.println("opcoes: nome, senha, cpf, telefone, endereco, idade, mae, pai");
+            opcao = sc.nextLine();
+            switch (opcao) {
+                case "nome":
+                System.out.print("Nome: ");
+                setNome(sc.nextLine());
+                    break;
+                case "senha":
+                System.out.print("Senha: ");
+                setSenha(sc.nextLine());
+                    break;
+                case "cpf":
+                System.out.print("CPF: ");
+                setCpf(sc.nextLine());
+                    break;
+                case "telefone":
+                System.out.print("telefone: ");
+                setTelefone(sc.nextLine());
+                    break;
+                case "endereco":
+                System.out.print("Cidade: ");
+                setCidade(sc.nextLine());
+                System.out.print("Bairro: ");
+                setBairro(sc.nextLine());
+                System.out.print("Rua: ");
+                setRua(sc.nextLine());
+                System.out.print("Número: ");
+                setNumero(sc.nextLine());
+                    break;
+                case "idade":
+                System.out.print("data de nascimento: ");
+                setDataDeNascimento(sc.nextLine());
+                    break;
+                case "mae":
+                System.out.print("Nome da Mae: ");
+                setNomeDaMae(sc.nextLine());
+                    break;
+                case "pai":
+                System.out.print("Nome do pai: ");
+                setNomeDoPai(sc.nextLine());
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void excluirAluno() {
-
+        
     }
 
     public void visualizarAluno() {
-
+        System.out.println(toString());
     }
 
     public void listarAlunos() {
-
+        
     }
 
     public String getNomeDaMae() {
@@ -104,5 +152,4 @@ public class Aluno extends Usuario {
     public void setAtendimentoEspecial(boolean atendimentoEspecial) {
         this.atendimentoEspecial = atendimentoEspecial;
     }
-
 }

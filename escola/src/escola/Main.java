@@ -12,8 +12,7 @@ public class Main {
         String cpf;
         String senha;
         int opcao;
-        // carregarUsuariosTxt(usuarios);
-        System.out.println("Digite 1 para login\nDigite 2 para cadastra usuario");
+        System.out.println("Digite 1 para login\nDigite 2 para cadastrar usuario");
         opcao = sc.nextInt();
         switch (opcao) {
             case 1:
@@ -29,7 +28,6 @@ public class Main {
                                     "Digite o valor corespondente a uma das opções." + "\n" +
                                     "1 - Matricula" + "\n" + "2 - Notas" + "\n" + "3 - Agendamento de Reunião" + "\n"
                                     + "4 - Disciplina");
-
                         }
                     }
                     break;
@@ -42,6 +40,5 @@ public class Main {
             default:
                 break;
         }
-
     }
 }

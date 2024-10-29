@@ -23,7 +23,7 @@ public class Notas {
     }
 
     private String calculaSituacao() {
-        return situacao = media > 7.0 ? "Você está aprovado" : "Você está reprovado";
+        return situacao = media > 7.0 ? "Voce esta aprovado" : "Voce esta reprovado";
     }
 
     public void criarNotas(Scanner sc) {
@@ -43,33 +43,6 @@ public class Notas {
         calculaSituacao();
         System.out.println(toString());
     }
-
-    /*
-     * public void salvarNotas(String caminhoArquivo) {
-     * try (FileWriter salva = new FileWriter(caminhoArquivo, true)) {
-     * BufferedWriter escreve = new BufferedWriter(salva);
-     * salva.write(nota1 + "\n" + nota2 + "\n" + nota3 + "\n" + media + "\n" +
-     * situacao + "\n");
-     * System.out.println("Notas salvas com sucesso!");
-     * } catch (IOException e) {
-     * System.out.println("Erro ao salvar notas: " + e.getMessage());
-     * }
-     * }
-     * // Método para carregar as notas do arquivo
-     * public void carregarNotas(String caminhoArquivo) {
-     * try (BufferedReader reader = new BufferedReader(new
-     * FileReader(caminhoArquivo))) {
-     * nota1 = Float.parseFloat(reader.readLine());
-     * nota2 = Float.parseFloat(reader.readLine());
-     * nota3 = Float.parseFloat(reader.readLine());
-     * media = Float.parseFloat(reader.readLine());
-     * situacao = reader.readLine();
-     * System.out.println("Notas carregadas com sucesso!");
-     * } catch (IOException e) {
-     * System.out.println("Erro ao carregar notas: " + e.getMessage());
-     * }
-     * }
-     */
 
     public void editarNotas(Scanner sc) {
         System.out.print("Deseja editar qual nota? 1|2|3 ");

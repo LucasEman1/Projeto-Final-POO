@@ -2,16 +2,15 @@ package escola;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AgendamentoDaReuniao {
     private String assunto;
-    private Date dataDaReuniao;
+    private String dataDaReuniao;
 
     private static List<AgendamentoDaReuniao> reunioes = new ArrayList<>();
 
-    public AgendamentoDaReuniao(String assunto, Date dataDaReuniao) {
+    public AgendamentoDaReuniao(String assunto, String dataDaReuniao) {
         this.assunto = assunto;
         this.dataDaReuniao = dataDaReuniao;
     }
@@ -19,19 +18,6 @@ public class AgendamentoDaReuniao {
     public void agendarReuniao() {
         reunioes.add(this);
         System.out.println("Reunião agendada com sucesso: " + this.assunto);
-    }
-
-    public static void mostrarReunioes() {
-        if (reunioes.isEmpty()) {
-            System.out.println("Nenhuma reunião agendada.");
-        } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-            System.out.println("Reuniões agendadas:");
-            for (AgendamentoDaReuniao reuniao : reunioes) {
-                System.out.println("Assunto: " + reuniao.getAssunto() +
-                        " | Data: " + sdf.format(reuniao.getDataDaReuniao()));
-            }
-        }
     }
 
     public static void removerReuniao(String assunto) {
@@ -50,7 +36,7 @@ public class AgendamentoDaReuniao {
         }
     }
 
-    public static void editarReuniao(String assunto, String novoAssunto, Date novaData) {
+    public static void editarReuniao(String assunto, String novoAssunto, String novaData) {
         for (AgendamentoDaReuniao reuniao : reunioes) {
             if (reuniao.getAssunto().equalsIgnoreCase(assunto)) {
                 reuniao.setAssunto(novoAssunto);
@@ -70,11 +56,11 @@ public class AgendamentoDaReuniao {
         this.assunto = assunto;
     }
 
-    public Date getDataDaReuniao() {
+    public String getDataDaReuniao() {
         return dataDaReuniao;
     }
 
-    public void setDataDaReuniao(Date dataDaReuniao) {
+    public void setDataDaReuniao(String dataDaReuniao) {
         this.dataDaReuniao = dataDaReuniao;
     }
 }
